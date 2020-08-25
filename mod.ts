@@ -9,20 +9,22 @@ export function onExit(action: () => void): void {
           op();
         }
       };
-      const ss = [
-        Deno.signals.quit(),
-        Deno.signals.interrupt(),
-        Deno.signals.terminate(),
-      ];
-      for (const s of ss) {
-        (async () => {
-          for await (const _ of s) {
-            for (const op of sync) {
-              op();
+      if (Deno.build.os !== "windows") {
+        const ss = [
+          Deno.signals.quit(),
+          Deno.signals.interrupt(),
+          Deno.signals.terminate(),
+        ];
+        for (const s of ss) {
+          (async () => {
+            for await (const _ of s) {
+              for (const op of sync) {
+                op();
+              }
+              Deno.exit(-128);
             }
-            Deno.exit(-128);
-          }
-        })();
+          })();
+        }
       }
     })();
   }
