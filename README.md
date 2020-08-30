@@ -8,11 +8,9 @@ Handle `SIGQUIT`, `SIGINT`, and `SIGTERM` in your application.
 
 ---
 
-> ⚠️ Signals are still not very well supported in deno. As APIs become more
+> ⚠️ Signals are still not very well supported in deno. As APIs become more stable this library will be updated. Currently not supported for windows
 
 ---
-
-## stable this library will be updated. Currently not supported for windows
 
 ```typescript
 import { onExit, exit } from "https://deno.land/x/exit/mod.ts";
