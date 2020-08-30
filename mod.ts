@@ -10,7 +10,7 @@ async function setupHook() {
         Deno.signals.quit(),
         Deno.signals.interrupt(),
         Deno.signals.terminate(),
-      ]
+      ],
     );
     for (const s of ss) {
       (async () => {
